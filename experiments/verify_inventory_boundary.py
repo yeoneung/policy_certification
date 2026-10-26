@@ -37,7 +37,7 @@ def main():
         r=iv.mpf([50+5*j,55+5*j])/1000
         jt,_=enclosure(r)
         upper_preservation.append(float(np.nextafter(float((jt+iv.mpf('.2')).b),np.inf)))
-    high_region_lower=min(baseline)-max(upper_preservation)
+    high_region_lower=float(np.nextafter(min(baseline)-max(upper_preservation),-np.inf))
     assert high_region_lower>.05 and max(low_edge)<-.05
     result={'passed':True,'positive_derivative_rate_range':[.20,.60],'covered_inventory_box':{'q':[.45,.60],'gamma':[.01,.40],'eta':1},
             'derivative_interval_cells':80,'additional_cost_interval_cells':90,'simpson_subintervals':400,'interval_decimal_digits':35,
