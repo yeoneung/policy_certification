@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "purpose": "Finite-confidence inventory study; primary runs fixed after labelled implementation pilots",
+  "model": "Projected Euler Gaussian regression with observed regulator",
+  "primary": {
+    "theta": [
+      [
+        0.5,
+        0.05
+      ],
+      [
+        0.5,
+        0.3
+      ]
+    ],
+    "methods": [
+      "ab",
+      "dopt",
+      "policy",
+      "oracle"
+    ],
+    "reps_per_cell": 250,
+    "budget": 0.01,
+    "delta": 0.05,
+    "dt": 0.02,
+    "horizon": 200000,
+    "seed": 20310001
+  },
+  "sensitivity": {
+    "methods": [
+      "ab",
+      "policy"
+    ],
+    "reps_per_cell": 100,
+    "factors": [
+      "dt=0.01",
+      "delta=0.01",
+      "budget=0.003",
+      "budget=0.03",
+      "boundary advantage=-0.051,+0.051",
+      "q=0.46,0.58"
+    ],
+    "horizon": 400000,
+    "seed": 20320001
+  },
+  "common_protocol": {
+    "stopping_rule": "Exact fixed-Gaussian-prior mixture inversion with conservative adaptive rectangle cover",
+    "parameter_domain": [
+      [
+        0.45,
+        0.6
+      ],
+      [
+        0.01,
+        0.4
+      ]
+    ],
+    "epsilon": 0.05,
+    "class_cover_leaf": 0.0005,
+    "design_grid": [
+      16,
+      27
+    ],
+    "design_budget_fraction": 0.9,
+    "tracking": "Deterministic weighted time deficits",
+    "block_length": "1+0.01*k",
+    "resource_guard": "At each Euler step, attenuate preservation to enforce cumulative energy <= B*time, with zero initial credit",
+    "initial_inventory": 0.5,
+    "oracle_status": "Uses the true parameter for sampling design only; reference, not an implementable learner"
+  },
+  "reporting": [
+    "All repetitions, including administrative censoring",
+    "Restricted mean times when censored",
+    "Monte Carlo standard errors",
+    "Error counts and binomial bounds",
+    "Cumulative energy, operating cost, realized energy/time",
+    "Resource-guard activation",
+    "No optional removal of unfavorable cells"
+  ],
+  "limits": [
+    "Fixed design precision does not implement the asymptotic oracle schedule",
+    "Time-step refinement does not prove a continuous-time error bound",
+    "Guarded sampling differs from the unguarded stationary library program"
+  ]
+}

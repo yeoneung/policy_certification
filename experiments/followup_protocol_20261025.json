@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "recorded_before_new_trajectory_results": true,
+  "registration_status": "Internal prospective protocol; not externally registered. Conditions motivated by the completed stationary diagnostic.",
+  "purpose": [
+    "Compare adaptive policy-directed and D-optimal sampling at the previously identified stationary separations",
+    "Measure budget, probe-width, and confidence interactions",
+    "Check neighboring bilinear parameters, time-step sensitivity, and inventory initial states"
+  ],
+  "bilinear": {
+    "primary_theta": [
+      [
+        -0.3,
+        0.2
+      ],
+      [
+        1.0,
+        0.2
+      ]
+    ],
+    "budgets": [
+      0.5,
+      1.0
+    ],
+    "confidence_delta": [
+      0.05,
+      0.001
+    ],
+    "methods": [
+      "dopt",
+      "policy"
+    ],
+    "primary_repetitions": 300,
+    "primary_total": 4800,
+    "sensitivity": {
+      "repetitions": 150,
+      "dt_refinement": {
+        "theta": [
+          -0.3,
+          0.2
+        ],
+        "budget": 1.0,
+        "delta": 0.001,
+        "dt": 0.01
+      },
+      "neighbor_theta": [
+        [
+          -0.25,
+          0.2
+        ],
+        [
+          -0.35,
+          0.2
+        ]
+      ],
+      "neighbor_budget": 1.0,
+      "neighbor_delta": 0.001
+    },
+    "total": 5700,
+    "horizon": 20000.0,
+    "dt": 0.02,
+    "initial_state": 0.0,
+    "design_grid": [
+      31,
+      25
+    ],
+    "design_alternative_mesh": 0.01,
+    "class_cover_mesh": 0.005,
+    "nominal_design_budget_fraction": 0.9,
+    "forced_exploration": "k^(-1/4), balanced extreme-action mixture of nominal cost B/2",
+    "block_duration": "0.5*k",
+    "sampling_allocation": "deterministic weighted time deficits",
+    "primary_confirmatory_family": "Four policy-vs-Dopt comparisons at theta=(-0.3,0.2), two budgets times two deltas; two-sided Welch tests with Holm adjustment at family level .05; direction must favor policy to support improvement. Other cells descriptive."
+  },
+  "inventory_width": {
+    "theta": [
+      [
+        0.5,
+        0.05
+      ],
+      [
+        0.5,
+        0.3
+      ]
+    ],
+    "budgets": [
+      0.003,
+      0.01,
+      0.03
+    ],
+    "confidence_delta": [
+      0.05,
+      0.01
+    ],
+    "widths": [
+      0.0,
+      1.0,
+      0.5,
+      0.25,
+      0.1
+    ],
+    "width_zero_means": "baseline/candidate; other rows use only baseline and the specified smooth probe",
+    "repetitions": 80,
+    "factorial_total": 4800,
+    "horizon": 400000.0,
+    "dt": 0.02,
+    "initial_state": 0.5,
+    "initial_state_sensitivity": {
+      "states": [
+        0.1,
+        1.9
+      ],
+      "widths": [
+        0.0,
+        0.5,
+        0.1
+      ],
+      "budget": 0.01,
+      "delta": 0.05,
+      "repetitions": 60
+    },
+    "total": 5520,
+    "allocation_rule": "Estimate model, select nearest point on 16x27 cost grid, propose probe time weight min(1,0.9B/estimated_probe_cost). This budget-filling rule is not asserted to maximize the finite-budget library frontier.",
+    "forced_exploration": "k^(-1/4); baseline/probe mixture with probe weight min(0.5,B/(2*maximum_tabulated_probe_cost))",
+    "block_duration": "1+0.01*k",
+    "sampling_allocation": "deterministic weighted time deficits",
+    "scope": "Mechanistic and sensitivity experiment; all width/budget/confidence cells reported. No confirmatory selection of the best observed width."
+  },
+  "common": {
+    "observation": "Projected Euler with observed projection regulator; actual predictable attenuated feature used for likelihood",
+    "certificate": "Fixed Gaussian-prior likelihood-mixture inversion; conservative continuous-parameter rectangle covers; ordinary floating-point arithmetic",
+    "bilinear_prior_centre": [
+      0.375,
+      0.0
+    ],
+    "bilinear_prior_precision": [
+      0.7901234567901234,
+      2.7777777777777777
+    ],
+    "inventory_prior_centre": [
+      0.525,
+      0.205
+    ],
+    "inventory_prior_precision": [
+      177.77777777777777,
+      26.298487836949374
+    ],
+    "resource_guard": "Zero initial credit; attenuate proposed deviation so cumulative squared input <= B*elapsed_time at every Euler endpoint",
+    "randomness": "Independent SeedSequence streams for every scheduled cell and repetition; base entropy 2026102504",
+    "records": [
+      "All runs, including incorrect returns and administrative censoring",
+      "Final G and shifted score",
+      "Prior-block and terminal certificate margins",
+      "Energy and guard activation",
+      "Terminal state and boundary regulators"
+    ],
+    "summaries": [
+      "Restricted mean stopping time and MCSE",
+      "Uncapped expected time is not inferred from censored RMST",
+      "20,000 independent bootstrap resamples for pointwise time ratios",
+      "Errors and pointwise one-sided 95% binomial upper bounds",
+      "Resource use",
+      "No pooling heterogeneous cells to estimate a common error probability"
+    ],
+    "exclusions": "Only explicit implementation smoke runs are excluded. All scheduled production runs retained. No optional stopping or increasing repetitions based on observed comparative advantage.",
+    "planned_new_runs": 11220,
+    "limits": [
+      "Synthetic data only",
+      "Ordinary floating-point statistical calculations",
+      "Discrete projected-Euler observations",
+      "Fixed numerical design precision"
+    ]
+  }
+}
