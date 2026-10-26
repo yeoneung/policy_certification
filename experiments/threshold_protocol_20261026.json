@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-26",
+  "purpose": "Compare inventory-triggered baseline/candidate actions with whole-controller blocks and two expanded-library designs",
+  "protocol_type": "Internal prospective record fixed before new simulation outcomes",
+  "primary": {"truths": [[0.5, 0.05], [0.5, 0.3]], "budget": 0.01, "delta": 0.05, "repetitions": 250, "dt": 0.02, "horizon": 200000},
+  "budget_sensitivity": {"budgets": [0.003, 0.03], "repetitions": 100, "dt": 0.02, "horizon": 400000},
+  "step_sensitivity": {"methods": ["policy", "threshold"], "budget": 0.01, "delta": 0.05, "repetitions": 100, "dt": 0.01, "horizon": 400000},
+  "methods": ["ab", "dopt", "policy", "threshold"],
+  "threshold_rule": "Preservation one when inventory >= s, zero below; block-start projected parameter estimate selects s from the same 16 by 27 grid, solving stationary intervention rate = 0.9B analytically",
+  "common": {"initial_inventory": 0.5, "block_duration": "1 + 0.01 k", "forced_exploration_weight": "k^(-1/4)", "forced_candidate_weight": "0.45 B", "allocation": "deterministic weighted time deficits", "certificate": "existing fixed-prior Gaussian mixture and full rectangle class covers", "guard": "existing predictable zero-credit resource cap", "prior_center": [0.525, 0.205], "prior_precision": [177.77777777777777, 26.298487836949377]},
+  "analysis": {"primary_family": "Six two-sided Welch comparisons: threshold versus each of AB, D-optimal and policy-directed, at both primary truths; Holm adjustment across six", "ratio_intervals": "20000 independent bootstrap resamples; pointwise descriptive 95% intervals", "all_scheduled_runs_retained": true, "sensitivity_analysis": "descriptive", "optional_stopping_of_repetitions": false},
+  "seed_entropy": 2026102605,
+  "scheduled_runs": 4000
+}

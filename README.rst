@@ -102,3 +102,30 @@ reference is not an implementable learner or a finite-time lower bound.
 The repository contains executable experiment code, configuration files and
 these operating instructions. It has no precomputed results or document
 generation workflow. No authentication credential is required to run it.
+
+Inventory-triggered controls
+---------------------------
+
+Compare binary state-triggered preservation with controller-block allocation::
+
+    python experiments/threshold_study.py prepare
+    python experiments/threshold_study.py preflight
+    python experiments/threshold_study.py smoke
+    python experiments/threshold_study.py run
+
+Add the same threshold to the D-optimal feedback library, then summarize every
+configured cell::
+
+    python experiments/threshold_enlarged.py prepare
+    python experiments/threshold_enlarged.py run
+    python experiments/summarize_threshold_study.py
+
+The two JSON protocols keep the original comparison family and the subsequent
+feedback-class ablation separate. Run records, summaries and comparisons stay
+under ``experiments/outputs/threshold_v5``. Existing matching records are reused.
+
+Evaluate probes whose support scales with the resource budget and verify
+the inventory cost-boundary derivatives with outward interval quadrature::
+
+    python experiments/budget_width_study.py
+    python experiments/verify_inventory_boundary.py

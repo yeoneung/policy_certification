@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-26",
+  "purpose": "Feedback-class ablation: give D-optimal allocation the same budget-calibrated threshold used by the binary state-triggered rule",
+  "timing": "Fixed after the original 4000 threshold-study outcomes and before these 500 new outcomes",
+  "repetitions": 250,
+  "truths": [[0.5, 0.05], [0.5, 0.3]],
+  "budget": 0.01,
+  "delta": 0.05,
+  "dt": 0.02,
+  "horizon": 200000,
+  "method": "D-optimal allocation over the original six smooth controllers plus the estimated-parameter budget-calibrated threshold",
+  "common_protocol": "Same fixed mixture, block durations, forced baseline/candidate exploration, nearest-grid estimate, weighted time deficits, and zero-credit guard as threshold_protocol_20261026.json",
+  "analysis": "Descriptive feedback-class ablation; separate from the original six-comparison confirmatory family",
+  "seed_entropy": 2026102607,
+  "scheduled_runs": 500
+}
