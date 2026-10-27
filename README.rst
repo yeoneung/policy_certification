@@ -155,3 +155,27 @@ The generated files include spending residuals, derivative checks, and
 small-budget convergence diagnostics. They also separate the local
 boundary-density approximation, the integrated baseline-tail width, and
 the threshold width under intervention.
+
+Decision horizons and cumulative intervention
+--------------------------------------------
+
+After generating the threshold and allocation study summaries, compare
+budget intensity, stopping time, and cumulative squared preservation effort::
+
+    python experiments/summarize_inventory_planning.py
+
+The command writes ``planning_summary.json``, ``budget_tradeoffs.csv``, and
+``confidence_tradeoffs.csv`` under
+``experiments/outputs/inventory/decision_horizon/``. It reports every configured
+budget for the threshold rule and every budget/confidence combination for
+the width-one smooth probe, retaining censoring and error counts. Time and
+its Monte Carlo standard error are expressed in reference reversion periods;
+cumulative effort retains its original model units. Comparisons are descriptive
+and use the fixed decision margin in the source experiments.
+
+To analyze summaries stored elsewhere::
+
+    python experiments/summarize_inventory_planning.py --threshold-summary path/to/threshold.csv --allocation-summary path/to/allocation.csv --output path/to/analysis
+
+The JSON records input hashes and the reference rate used for time conversion.
+This command reads cell summaries and does not simulate additional paths.
