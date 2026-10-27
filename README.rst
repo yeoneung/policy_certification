@@ -120,8 +120,8 @@ configured cell::
     python experiments/threshold_enlarged.py run
     python experiments/summarize_threshold_study.py
 
-The two JSON protocols keep the original comparison family and the subsequent
-feedback-class ablation separate. Run records, summaries and comparisons stay
+The two JSON protocols specify the planned comparison family and the exploratory
+feedback-class ablation. Run records, summaries and comparisons stay
 under ``experiments/outputs/threshold_v5``. Existing matching records are reused.
 
 Evaluate probes whose support scales with the resource budget and verify
@@ -129,3 +129,27 @@ the inventory cost-boundary derivatives with outward interval quadrature::
 
     python experiments/budget_width_study.py
     python experiments/verify_inventory_boundary.py
+
+Finite-budget threshold calibration
+-----------------------------------
+
+Solve the stationary spending equation at the configured budgets, check its
+derivative and integral against independent numerical calculations, and
+compare exact threshold widths with the small-budget linear approximation::
+
+    python experiments/finite_budget_calibration.py
+
+This command runs without simulation records. It writes ``results.json`` and
+``calibration.csv`` under
+``experiments/outputs/inventory/finite_budget_calibration/``.
+If ``experiments/outputs/threshold_v5/study_summary.csv`` is available, the
+JSON also reports primary stopping times in reference reversion periods.
+The reference baseline decay rate is 0.5, so one reference period equals
+two model time units. To use a summary at another location::
+
+    python experiments/finite_budget_calibration.py --summary path/to/study_summary.csv
+
+The width comparison evaluates a uniform smooth-probe asymptotic coefficient
+and the exact binary-threshold spending equation as separate constructions.
+The generated files include spending residuals, derivative checks, and
+small-budget convergence diagnostics.
