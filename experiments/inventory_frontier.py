@@ -140,7 +140,7 @@ def structural_study():
     for gamma, color in [(0.05, '#245e8e'), (0.3, '#ad4d32')]:
         rr = [r for r in rows if r['gamma'] == gamma]
         xx = [r['width'] for r in rr]
-        axes[0].plot(xx, [r['gate_information_ratio'] for r in rr], 'o-', color=color, label=f'Gate, gamma={gamma}')
+        axes[0].plot(xx, [r['gate_information_ratio'] for r in rr], 'o-', color=color, label=f'Probe, gamma={gamma}')
         axes[0].axhline(rr[0]['candidate_information_ratio'], color=color, linestyle=':', label=f'A/B, gamma={gamma}')
         axes[1].plot(xx, [r['gate_spend'] for r in rr], 'o-', color=color, label=f'gamma={gamma}')
     axes[0].axhline(C * C / OMEGA, color='black', linestyle='--', label='Capacity-based information reference')

@@ -48,8 +48,13 @@ def main(summary_path=None):
             q = .5
             s = brentq(lambda s: threshold_cost((q, gamma), s)-.9*budget,
                        0, C, xtol=1e-13)
+            p0C = np.exp((.4*C-q*C*C)/SIGMA2)/segment_integral(q, 0, C)
+            baseline_s = brentq(lambda s: threshold_cost((q, 0), s)-.9*budget,
+                                0, C, xtol=1e-13)
             rows.append(dict(budget=budget, q=q, gamma=gamma,
                              uniform_smooth_linear_width=kappa*budget,
+                             baseline_boundary_linear_width=.9*budget/p0C,
+                             baseline_tail_width=C-baseline_s,
                              threshold=s, threshold_width=C-s,
                              stationary_spending=threshold_cost((q, gamma), s),
                              quadrature_spending=quadrature_cost(q, gamma, s)))

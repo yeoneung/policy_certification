@@ -7,7 +7,7 @@ from scipy.stats import beta,ttest_ind
 import mpmath as mp
 import threshold_study as study
 import threshold_enlarged as enlarged
-from validate_followup_v4 import log_min
+from validate_allocation_study import log_min
 
 def main():
     summaries=[];raw={};cov=np.load(study.OUT/'covers.npz');checked=0

@@ -45,7 +45,7 @@ Run the bilinear comparator and inventory probe-width configurations::
     python run_experiments.py --suite extended
 
 The exact parameter grids, seeds, horizons and repetition counts are recorded
-in ``experiments/followup_protocol_20261025.json`` and generated ``jobs.json``.
+in ``experiments/allocation_protocol.json`` and generated ``jobs.json``.
 Matching cached designs and existing run files are reused. Regenerate fixed
 trajectory jobs with::
 
@@ -79,7 +79,7 @@ files or comparative outcomes are included in this repository.
 The suite runner writes JSON and CSV summaries. Summarize a generated run
 directory separately with::
 
-    python summarize_results.py --input experiments/outputs/followup_v4
+    python summarize_results.py --input experiments/outputs/allocation_study
 
 Summaries retain errors and administrative censoring. They report restricted
 mean stopping time, Monte Carlo standard error, energy use, and pointwise
@@ -152,4 +152,6 @@ two model time units. To use a summary at another location::
 The width comparison evaluates a uniform smooth-probe asymptotic coefficient
 and the exact binary-threshold spending equation as separate constructions.
 The generated files include spending residuals, derivative checks, and
-small-budget convergence diagnostics.
+small-budget convergence diagnostics. They also separate the local
+boundary-density approximation, the integrated baseline-tail width, and
+the threshold width under intervention.

@@ -6,7 +6,7 @@ from pathlib import Path
 import mpmath as mp
 import numpy as np
 from scipy.optimize import linprog, minimize
-import followup_v4 as study
+import allocation_study as study
 
 def in_cover(point, boxes):
     x, y = point

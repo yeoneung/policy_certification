@@ -13,8 +13,8 @@ from scipy.optimize import minimize
 import policy_certification as pc
 import inventory_sequential as inv
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'experiments/outputs/followup_v4'
-PROTOCOL = ROOT / 'experiments/followup_protocol_20261025.json'
+OUT = ROOT / 'experiments/outputs/allocation_study'
+PROTOCOL = ROOT / 'experiments/allocation_protocol.json'
 DIGEST = hashlib.sha256(PROTOCOL.read_bytes()).hexdigest()
 WIDTHS = np.array([0.0, 1.0, 0.5, 0.25, 0.1])
 FIELDS = ['time', 'energy', 'answer', 'regulator_low', 'regulator_high', 'operating_cost', 'blocks', 'guard_steps', 'steps', 'max_budget_excess', 'g00', 'g01', 'g11', 's0', 's1', 'terminal_state', 'plus_margin', 'minus_margin', 'previous_plus_margin', 'previous_minus_margin']

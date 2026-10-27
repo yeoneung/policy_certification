@@ -23,16 +23,16 @@ def main():
     args=parser.parse_args()
     if args.suite=='smoke':
         run('policy_certification.py','validate')
-        run('followup_v4.py','prepare')
-        run('validate_followup_v4.py','preflight')
-        run('followup_v4.py','smoke')
+        run('allocation_study.py','prepare')
+        run('validate_allocation_study.py','preflight')
+        run('allocation_study.py','smoke')
     elif args.suite=='extended':
-        run('followup_v4.py','prepare')
-        run('validate_followup_v4.py','preflight')
+        run('allocation_study.py','prepare')
+        run('validate_allocation_study.py','preflight')
         for model in ['bilinear','inventory']:
-            run('followup_v4.py','run','--model',model,*(['--rerun'] if args.rerun else []))
-        run('validate_followup_v4.py','results')
-        summarize(EXPERIMENTS/'outputs/followup_v4')
+            run('allocation_study.py','run','--model',model,*(['--rerun'] if args.rerun else []))
+        run('validate_allocation_study.py','results')
+        summarize(EXPERIMENTS/'outputs/allocation_study')
     elif args.suite=='inventory':
         for group in ['primary','sensitivity']:
             run('inventory_run_study.py','--group',group,*(['--rerun'] if args.rerun else []))

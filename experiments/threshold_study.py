@@ -16,7 +16,7 @@ from scipy.integrate import quad
 from scipy.optimize import brentq
 from scipy.special import ndtr
 import inventory_sequential as seq
-from followup_v4 import mixture_test, FIELDS
+from allocation_study import mixture_test, FIELDS
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'experiments/outputs/threshold_v5'
@@ -164,7 +164,7 @@ def preflight():
     seeds=[int(s) for j in jobs() for s in np.random.SeedSequence([2026102605,j['stream'],0]).generate_state(j['reps'],dtype=np.uint32)]
     assert len(set(seeds))==4000
     old=set()
-    for folder in [seq.OUT,ROOT/'experiments/outputs/followup_v4']:
+    for folder in [seq.OUT,ROOT/'experiments/outputs/allocation_study']:
         for p in folder.glob('*.json'):
             d=json.loads(p.read_text())
             if isinstance(d,dict):old.update(r['seed'] for r in d.get('runs',[]) if 'seed' in r)
